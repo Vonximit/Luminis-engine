@@ -1,0 +1,14 @@
+{
+  "name": "luminis-engine",
+  "version": "0.5.0",
+  "description": "Motor determinista de diseño generativo basado en seeds y reglas visuales.",
+  "main": "src/luminis-engine.js",
+  "files": ["src", "index.html", "README.md"],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check src/luminis-engine.js"
+  },
+  "keywords": ["generative-design", "design-tokens", "seeded", "ui", "creative-coding"],
+  "author": "Margaret (Vonximit)",
+  "license": "UNLICENSED"
+}
