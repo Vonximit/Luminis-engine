@@ -1,41 +1,307 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Luminis Engine v0.4</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0d1117;--surface:rgba(30,41,59,.7);--surface2:rgba(30,41,59,.42);--accent:#7f8ea3;--accent2:#a8b8cc;--text:#f1f5f9;--text2:#a8b8cc;--text3:#7f8ea3;--border:rgba(127,142,163,.22);--border2:rgba(127,142,163,.42);--glow:rgba(127,142,163,.16);--speed:3s;--radius:12px;--spacing:48px;--grid:repeat(3,1fr);--font:Inter,system-ui,-apple-system,sans-serif;--head:Inter,system-ui,-apple-system,sans-serif}html{scroll-behavior:smooth}body{min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;transition:background 1.2s ease,color .8s ease}h1,h2,.stat-value,.nav-logo{font-family:var(--head)}#particle-field{position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity .45s ease}.p{position:absolute;border-radius:50%;opacity:0;animation:rise var(--speed) ease-in-out infinite}@keyframes rise{0%{opacity:0;transform:translateY(0) scale(.3)}25%{opacity:.65}75%{opacity:.2}100%{opacity:0;transform:translateY(-240px) scale(1.4)}}nav{position:fixed;inset:0 0 auto;z-index:10;height:60px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(0,0,0,.18);backdrop-filter:blur(14px)}.nav-logo{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}@keyframes pulse{50%{opacity:.45;transform:scale(.7)}}.badge,.tag{padding:3px 9px;border:1px solid var(--border2);border-radius:999px;background:var(--surface);color:var(--text2);font-size:11px}.page{position:relative;z-index:1;max-width:1100px;margin:auto;padding:0 24px}.hero{max-width:900px;padding:140px 0 80px}.eyebrow,.section-label{color:var(--accent2);font-size:12px;letter-spacing:2px;text-transform:uppercase}h1{margin:24px 0 28px;color:var(--text);font-size:clamp(42px,7vw,80px);font-weight:800;line-height:1.05;letter-spacing:0}h1 em,h2 em{color:var(--accent);font-style:normal}.hero-sub{max-width:620px;margin-bottom:40px;color:var(--text2);font-size:20px;line-height:1.7}.proof{display:inline-flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--text3);font-size:13px}code{font-family:"SF Mono","Fira Code",monospace}.proof code{padding:2px 8px;border:1px solid var(--border2);border-radius:5px;background:var(--surface);color:var(--accent2)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:80px}.stat-card,.rule-card{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);transition:transform .3s ease,box-shadow .5s ease,background .8s ease,border-color .8s ease,border-radius .8s ease}.stat-card{position:relative;overflow:hidden;padding:20px 20px 16px}.stat-card:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--accent);opacity:.62}.stat-card:hover,.rule-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 20px 40px var(--glow)}.stat-card.pulse{animation:cardPulse .7s ease}@keyframes cardPulse{30%{transform:scale(1.04);box-shadow:0 0 30px var(--glow)}}.stat-label{margin-bottom:6px;color:var(--text3);font-size:11px;letter-spacing:1px;text-transform:uppercase}.stat-value{color:var(--accent);font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}.stat-bar{height:2px;margin-top:10px;border-radius:1px;background:var(--accent);opacity:.45;transition:width 1s ease}.section{padding:var(--spacing) 0}.section-label{display:flex;gap:12px;align-items:center;margin-bottom:48px;color:var(--text3)}.section-label:after{content:"";flex:1;height:1px;background:var(--border)}.rules-grid{display:grid;grid-template-columns:var(--grid);gap:20px;transition:grid-template-columns .8s ease}.rule-card{padding:28px 24px;background:var(--surface2)}.rule-number{margin-bottom:14px;color:var(--accent2);font-size:11px}.rule-title{margin-bottom:10px;color:var(--text);font-size:18px;line-height:1.3}.rule-body{color:var(--text2);font-size:14px}.rule-code{margin-top:16px;padding:12px 14px;border-left:2px solid var(--accent);border-radius:8px;background:rgba(0,0,0,.3);color:var(--accent2);font-size:12px;line-height:1.8;white-space:pre-wrap}.cta{padding:80px 0 120px;text-align:center}.cta h2{margin-bottom:16px;font-size:clamp(32px,5vw,56px);line-height:1.1}.cta p{margin-bottom:40px;color:var(--text2);font-size:17px}button{border:1px solid var(--border2);border-radius:var(--radius);background:var(--accent);color:var(--bg);cursor:pointer;font:inherit;font-weight:700;transition:transform .3s ease,filter .3s ease,border-color .3s ease}button:hover{filter:brightness(1.12);transform:scale(1.04)}.cta button{padding:14px 32px}footer{position:relative;z-index:1;padding:24px;border-top:1px solid var(--border);color:var(--text3)}.footer-inner{max-width:1100px;margin:auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:13px}.share{display:flex;gap:8px;align-items:center}.share button,#dna-panel button{padding:7px 10px;border-radius:8px;background:var(--surface);color:var(--text2);font-size:12px;font-weight:600}#dna-panel{position:fixed;right:24px;bottom:24px;z-index:20;width:260px;padding:18px 20px;border:1px solid var(--border2);border-radius:16px;background:rgba(0,0,0,.62);box-shadow:0 24px 60px rgba(0,0,0,.5);backdrop-filter:blur(20px)}.dna-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.dna-title{color:var(--text3);font-size:11px;letter-spacing:1px;text-transform:uppercase}.trait{display:flex;gap:10px;align-items:center;margin-bottom:9px}.trait-name{width:68px;flex-shrink:0;color:var(--text3);font:12px "SF Mono",monospace}.track{flex:1;height:3px;overflow:hidden;border-radius:2px;background:rgba(255,255,255,.08)}.fill{height:100%;border-radius:2px;background:var(--accent);transition:width 1s ease,background .8s ease}.val{width:28px;color:var(--accent2);font:700 11px "SF Mono",monospace;text-align:right}.dna-footer{margin:12px 0;padding-top:12px;border-top:1px solid var(--border);color:var(--text3);font-size:11px}@media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr)}.rules-grid{grid-template-columns:1fr!important}#dna-panel{right:12px;bottom:12px;width:min(220px,calc(100vw - 24px))}}@media(max-width:560px){nav{padding:0 16px}.page{padding:0 18px}.hero{padding-top:118px}.hero-sub{font-size:18px}.badge{max-width:45vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.2s!important}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Luminis Engine: motor determinista de diseño generativo por seed.">
+  <title>Luminis Engine v0.5</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --bg: #0d1117;
+      --surface: rgba(30,41,59,.7);
+      --surface2: rgba(30,41,59,.4);
+      --accent: #7f8ea3;
+      --accent2: #a8b8cc;
+      --text: #f1f5f9;
+      --text2: #a8b8cc;
+      --text3: #7f8ea3;
+      --border: rgba(127,142,163,.2);
+      --border2: rgba(127,142,163,.4);
+      --glow: rgba(127,142,163,.15);
+      --speed: 3s;
+      --radius: 18px;
+      --spacing: 64px;
+      --grid: repeat(3,1fr);
+      --font: Inter,system-ui,-apple-system,sans-serif;
+      --head: Inter,system-ui,-apple-system,sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      transition: background 1s ease, color .6s ease;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    #particle-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      animation: rise var(--speed) ease-in-out infinite;
+    }
+    @keyframes rise {
+      0% { opacity: 0; transform: translateY(0) scale(.35); }
+      25% { opacity: .7; }
+      75% { opacity: .2; }
+      100% { opacity: 0; transform: translateY(-240px) scale(1.4); }
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb,var(--bg) 76%,transparent);
+      backdrop-filter: blur(18px);
+    }
+    .brand { display: flex; gap: 10px; align-items: center; font: 800 15px var(--head); }
+    .brand-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 20px var(--accent); }
+    .badge { padding: 4px 10px; border: 1px solid var(--border2); border-radius: 999px; color: var(--text2); font-size: 12px; }
+    main { position: relative; z-index: 1; width: min(calc(100% - 40px),1100px); margin: auto; }
+    .hero { padding: clamp(80px,12vw,150px) 0 64px; }
+    .eyebrow { color: var(--accent2); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3 { font-family: var(--head); line-height: 1.05; }
+    h1 { max-width: 920px; margin: 22px 0; font-size: clamp(3rem,8vw,6.8rem); letter-spacing: -.06em; }
+    h1 em, h2 em { color: var(--accent); font-style: normal; }
+    .lead { max-width: 720px; color: var(--text2); font-size: clamp(1.05rem,2vw,1.3rem); }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+    input {
+      min-width: min(100%,260px);
+      padding: 12px 15px;
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+    }
+    input:focus { box-shadow: 0 0 0 3px var(--glow); }
+    button {
+      padding: 12px 17px;
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 800;
+    }
+    button.secondary { background: var(--surface); color: var(--text2); }
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 24px 70px transparent;
+      transition: transform .3s ease, border-color .5s ease, box-shadow .5s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--border2); box-shadow: 0 24px 70px var(--glow); }
+    .stat { padding: 20px; }
+    .stat span { display: block; color: var(--text3); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .stat strong { display: block; margin-top: 6px; color: var(--accent); font: 850 1.8rem var(--head); }
+    .section { padding: var(--spacing) 0; }
+    .section-title { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; color: var(--text3); font-size: 12px; letter-spacing: .13em; text-transform: uppercase; }
+    .section-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .rules { display: grid; grid-template-columns: var(--grid); gap: 18px; }
+    .rule { padding: 26px; background: var(--surface2); }
+    .rule small { color: var(--accent2); }
+    .rule h2 { margin: 12px 0; font-size: 1.35rem; }
+    .rule p { margin: 0; color: var(--text2); font-size: .95rem; }
+    .inspector { display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; align-items: start; }
+    .dna, pre { margin: 0; padding: 24px; }
+    .trait { display: grid; grid-template-columns: 90px 1fr 44px; gap: 10px; align-items: center; margin: 13px 0; }
+    .trait-name { color: var(--text3); font: 12px ui-monospace,monospace; }
+    .track { height: 4px; overflow: hidden; border-radius: 4px; background: color-mix(in srgb,var(--text) 10%,transparent); }
+    .fill { height: 100%; background: var(--accent); transition: width .7s ease; }
+    .trait-value { color: var(--accent2); font: 700 12px ui-monospace,monospace; text-align: right; }
+    pre { overflow: auto; background: color-mix(in srgb,var(--bg) 72%,transparent); color: var(--text2); font: 12px/1.7 ui-monospace,monospace; }
+    footer { position: relative; z-index: 1; margin-top: 70px; padding: 28px 24px; border-top: 1px solid var(--border); color: var(--text3); text-align: center; font-size: 13px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 780px) {
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .rules, .inspector { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 520px) {
+      nav { padding: 0 16px; }
+      main { width: min(calc(100% - 28px),1100px); }
+      .hero { padding-top: 72px; }
+      .controls > * { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      #particle-field { display: none; }
+    }
+  </style>
 </head>
 <body>
-<div id="particle-field" aria-hidden="true"></div>
-<nav><div class="nav-logo"><div class="dot"></div>Luminis Engine</div><div class="badge" id="nav-version">v0.4 · arquitectura viva</div></nav>
-<main class="page">
-<section class="hero" aria-label="Hero"><p class="eyebrow">Motor de interfaz autónomo</p><h1>Esta página<br><em>decidió su apariencia</em><br>sola.</h1><p class="hero-sub">No hay CSS fijo de colores. Hay un motor que analiza una personalidad generada al cargar y toma cada decisión de diseño en runtime.</p><div class="proof">Tú no escribiste <code>background: #...</code> — el motor sí.</div></section>
-<section class="stats" aria-label="Valores del motor en tiempo real"><article class="stat-card" id="sc-speed"><div class="stat-label">velocidad</div><div class="stat-value" id="sv-speed">—</div><div class="stat-bar" id="sb-speed"></div></article><article class="stat-card" id="sc-particles"><div class="stat-label">partículas</div><div class="stat-value" id="sv-particles">—</div><div class="stat-bar" id="sb-particles"></div></article><article class="stat-card" id="sc-spacing"><div class="stat-label">espaciado</div><div class="stat-value" id="sv-spacing">—</div><div class="stat-bar" id="sb-spacing"></div></article><article class="stat-card" id="sc-theme"><div class="stat-label">tema elegido</div><div class="stat-value" id="sv-theme">—</div><div class="stat-bar" id="sb-theme"></div></article></section>
-<section class="section" aria-label="Cómo funciona"><div class="section-label">Tres reglas del motor</div><div class="rules-grid"><article class="rule-card"><div class="rule-number">regla 01</div><h2 class="rule-title">La página nace con un ADN</h2><p class="rule-body">Al cargar, el motor genera una personalidad. Cinco valores entre 0 y 1 que definen todo lo que vendrá.</p><pre class="rule-code"><code>const p = {
-  curiosity: rand(),
-  calm: rand(),
-  elegance: rand(),
-  energy: rand(),
-  complexity: rand()
-};</code></pre></article><article class="rule-card"><div class="rule-number">regla 02</div><h2 class="rule-title">El motor elige, no el diseñador</h2><p class="rule-body">Ningún color fue hardcodeado. El motor evalúa el ADN mediante scoring y decide tema, velocidad, densidad y espaciado.</p><pre class="rule-code"><code>scores.neon = energy * 2.2 - calm * 0.8;
-scores.glass = calm * 2.2 - energy * 0.8;
-// gana el mayor.</code></pre></article><article class="rule-card"><div class="rule-number">regla 03</div><h2 class="rule-title">Los componentes tienen estado</h2><p class="rule-body">No son estilos. Son comportamientos. Una tarjeta no cambia de color: late, crece, emite luz, vuelve lentamente.</p><pre class="rule-code"><code>// No escribiste esto:
-.card { color: red; }
+  <div id="particle-field" aria-hidden="true"></div>
+  <nav>
+    <div class="brand"><span class="brand-dot"></span>Luminis Engine</div>
+    <span class="badge" id="version-badge">v0.5</span>
+  </nav>
 
-// Escribiste esto:
-card.mood = "important";
-// El motor decidió el resto.</code></pre></article></div></section>
-<section class="cta" aria-label="CTA"><h2>No diseñamos.<br><em>Cultivamos</em> interfaces.</h2><p>Cada seed genera un ADN único. Comparte el tuyo.</p><button type="button" onclick="reroll()">Nuevo ADN →</button></section>
-</main>
-<footer><div class="footer-inner"><span>Luminis Engine v0.4 — Milenova</span><span class="share"><code id="footer-seed">seed: —</code><button id="share-btn" type="button" onclick="copySeed()">compartir</button></span></div></footer>
-<aside id="dna-panel" aria-label="ADN de esta sesión"><div class="dna-header"><span class="dna-title">ADN de esta sesión</span><span class="tag" id="dna-theme-tag">—</span></div><div class="trait"><span class="trait-name">curiosity</span><div class="track"><div class="fill" id="df-curiosity"></div></div><span class="val" id="dv-curiosity">0.00</span></div><div class="trait"><span class="trait-name">calm</span><div class="track"><div class="fill" id="df-calm"></div></div><span class="val" id="dv-calm">0.00</span></div><div class="trait"><span class="trait-name">elegance</span><div class="track"><div class="fill" id="df-elegance"></div></div><span class="val" id="dv-elegance">0.00</span></div><div class="trait"><span class="trait-name">energy</span><div class="track"><div class="fill" id="df-energy"></div></div><span class="val" id="dv-energy">0.00</span></div><div class="trait"><span class="trait-name">complexity</span><div class="track"><div class="fill" id="df-complexity"></div></div><span class="val" id="dv-complexity">0.00</span></div><div class="dna-footer">Motor activo · <em id="dna-count">0</em> partículas<br>Tú no escribiste ninguno de estos colores.</div><button type="button" onclick="reroll()">↻ regenerar ADN</button></aside>
-<script>
-'use strict';
-const T={neon:{bg:'#0a0014',surface:'rgba(120,0,255,.12)',surface2:'rgba(120,0,255,.06)',accent:'#c084fc',accent2:'#e879f9',text:'#fce7ff',text2:'#d8b4fe',text3:'#a855f7',border:'rgba(168,85,247,.2)',border2:'rgba(168,85,247,.45)',glow:'rgba(192,132,252,.25)',pc:['#e879f9','#a855f7','#f0abfc','#c084fc','#7e22ce'],font:'Space Grotesk,system-ui,sans-serif',head:'Space Grotesk,system-ui,sans-serif'},glass:{bg:'#dbeafe',surface:'rgba(255,255,255,.55)',surface2:'rgba(255,255,255,.3)',accent:'#0369a1',accent2:'#0284c7',text:'#0c4a6e',text2:'#0369a1',text3:'#075985',border:'rgba(3,105,161,.18)',border2:'rgba(3,105,161,.35)',glow:'rgba(56,189,248,.2)',pc:['#bae6fd','#7dd3fc','#38bdf8','#0ea5e9','#0284c7'],font:'Inter,system-ui,sans-serif',head:'Inter,system-ui,sans-serif'},ember:{bg:'#0f0500',surface:'rgba(251,146,60,.1)',surface2:'rgba(251,146,60,.05)',accent:'#fb923c',accent2:'#fdba74',text:'#fff7ed',text2:'#fed7aa',text3:'#fb923c',border:'rgba(251,146,60,.2)',border2:'rgba(251,146,60,.4)',glow:'rgba(251,146,60,.25)',pc:['#fb923c','#f97316','#fdba74','#fbbf24','#ea580c'],font:'Space Mono,monospace',head:'Space Mono,monospace'},forest:{bg:'#021404',surface:'rgba(34,197,94,.1)',surface2:'rgba(34,197,94,.05)',accent:'#22c55e',accent2:'#4ade80',text:'#f0fdf4',text2:'#bbf7d0',text3:'#22c55e',border:'rgba(34,197,94,.18)',border2:'rgba(34,197,94,.38)',glow:'rgba(34,197,94,.2)',pc:['#22c55e','#16a34a','#4ade80','#86efac','#15803d'],font:'Inter,system-ui,sans-serif',head:'Georgia,serif'},space:{bg:'#0d1117',surface:'rgba(30,41,59,.7)',surface2:'rgba(30,41,59,.4)',accent:'#7f8ea3',accent2:'#a8b8cc',text:'#f1f5f9',text2:'#a8b8cc',text3:'#7f8ea3',border:'rgba(127,142,163,.2)',border2:'rgba(127,142,163,.4)',glow:'rgba(127,142,163,.15)',pc:['#586880','#7f8ea3','#3d4f63','#a8b8cc','#2a3749'],font:'Inter,system-ui,sans-serif',head:'Inter,system-ui,sans-serif'}};
-const MAX=100,pool=[];let _seed=0;function decide(p){const s={neon:p.energy*2.2-p.calm*.8-.3,glass:p.calm*2.2-p.energy*.8-.3,ember:p.energy*1.4+(1-p.calm)*1.2-p.elegance*.5-.6,forest:p.calm*1.2+p.elegance*.9-p.energy*1.1-.4,space:p.curiosity*.4+.1};return Object.entries(s).reduce((b,n)=>n[1]>b[1]?n:b,['space',-Infinity])[0]}const speed=p=>Number(Math.max(1,7-p.energy*6).toFixed(2)),count=p=>Math.floor(p.curiosity*90+10),spacing=p=>Math.floor(40+p.elegance*70),radius=p=>Math.floor(4+p.complexity*46);function grid(p){return p.complexity<.33?'1fr':p.complexity>.66?'repeat(3,1fr)':'repeat(2,1fr)'}function css(name,p){const t=T[name],r=document.documentElement;[['--bg',t.bg],['--surface',t.surface],['--surface2',t.surface2],['--accent',t.accent],['--accent2',t.accent2],['--text',t.text],['--text2',t.text2],['--text3',t.text3],['--border',t.border],['--border2',t.border2],['--glow',t.glow],['--speed',speed(p)+'s'],['--spacing',spacing(p)+'px'],['--radius',radius(p)+'px'],['--grid',grid(p)],['--font',t.font],['--head',t.head]].forEach(([k,v])=>r.style.setProperty(k,v))}function init(){const f=document.getElementById('particle-field');for(let i=0;i<MAX;i++){const el=document.createElement('div');el.className='p';el.style.display='none';f.appendChild(el);pool.push(el)}}function particles(p,name){const c=count(p),spd=speed(p),colors=T[name].pc;pool.forEach((el,i)=>{if(i>=c){el.style.display='none';return}const size=(2+Math.random()*5).toFixed(1)+'px';el.style.display='block';el.style.width=size;el.style.height=size;el.style.left=(Math.random()*100).toFixed(1)+'%';el.style.top=(40+Math.random()*60).toFixed(1)+'%';el.style.background=colors[Math.floor(Math.random()*colors.length)];el.style.animationDuration=(spd*(.5+Math.random()*1.2)).toFixed(2)+'s';el.style.animationDelay=(Math.random()*spd*1.5).toFixed(2)+'s'})}function pulse(id){const el=document.getElementById(id);if(!el)return;el.classList.remove('pulse');void el.offsetWidth;el.classList.add('pulse');el.addEventListener('animationend',()=>el.classList.remove('pulse'),{once:true})}function ui(p,name){const spd=speed(p),cnt=count(p),sp=spacing(p);document.getElementById('nav-version').textContent=`v0.4 · ${name}`;document.getElementById('sv-speed').textContent=spd.toFixed(1)+'s';document.getElementById('sv-particles').textContent=cnt;document.getElementById('sv-spacing').textContent=sp+'px';document.getElementById('sv-theme').textContent=name;document.getElementById('sb-speed').style.width=((8-spd)/7*100).toFixed(0)+'%';document.getElementById('sb-particles').style.width=cnt+'%';document.getElementById('sb-spacing').style.width=((sp-40)/70*100).toFixed(0)+'%';document.getElementById('sb-theme').style.width=({neon:100,glass:80,ember:60,forest:40,space:20}[name]||50)+'%';document.getElementById('dna-theme-tag').textContent=name;document.getElementById('dna-count').textContent=cnt;document.getElementById('footer-seed').textContent=`seed: ${_seed.toString(16).padStart(6,'0')}`;['curiosity','calm','elegance','energy','complexity'].forEach(k=>{document.getElementById('df-'+k).style.width=(p[k]*100).toFixed(0)+'%';document.getElementById('dv-'+k).textContent=p[k].toFixed(2)});['sc-speed','sc-particles','sc-spacing','sc-theme'].forEach(pulse)}function seeded(seed,i){const x=Math.sin(seed*9301+i*49297+233)*933458.5;return x-Math.floor(x)}function gen(seed){return{curiosity:+seeded(seed,0).toFixed(4),calm:+seeded(seed,1).toFixed(4),elegance:+seeded(seed,2).toFixed(4),energy:+seeded(seed,3).toFixed(4),complexity:+seeded(seed,4).toFixed(4)}}function boot(seed){_seed=seed;const p=gen(seed),name=decide(p);css(name,p);ui(p,name);particles(p,name)}function reroll(){const f=document.getElementById('particle-field'),s=Math.floor(Math.random()*0xFFFFFF);history.replaceState({},'',`?seed=${s}`);f.style.opacity='0';setTimeout(()=>{boot(s);requestAnimationFrame(()=>requestAnimationFrame(()=>{f.style.opacity='1'}))},420)}function copySeed(){const btn=document.getElementById('share-btn'),url=location.origin+location.pathname+`?seed=${_seed}`;if(!navigator.clipboard){btn.textContent='seed: '+_seed;setTimeout(()=>btn.textContent='compartir',3000);return}navigator.clipboard.writeText(url).then(()=>{btn.textContent='¡copiado!';setTimeout(()=>btn.textContent='compartir',2000)}).catch(()=>{btn.textContent='seed: '+_seed;setTimeout(()=>btn.textContent='compartir',3000)})}init();const urlSeed=parseInt(new URLSearchParams(location.search).get('seed'),10);boot(isNaN(urlSeed)?Date.now()%0xFFFFFF:urlSeed);
-</script>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Motor determinista de diseño generativo</p>
+      <h1>Una seed.<br><em>Muchas identidades visuales.</em></h1>
+      <p class="lead">Luminis Engine convierte una seed en cinco rasgos reproducibles, puntúa reglas de diseño y compone temas, ritmo, densidad, espaciado, radios y grilla.</p>
+      <form class="controls" id="seed-form">
+        <label class="sr-only" for="seed-input">Seed numérica o textual</label>
+        <input id="seed-input" name="seed" autocomplete="off" placeholder="Escribe una seed: Marga, 42, 0x2a">
+        <button type="submit">Generar diseño</button>
+        <button class="secondary" id="random-button" type="button">Seed aleatoria</button>
+        <button class="secondary" id="share-button" type="button">Compartir</button>
+      </form>
+      <p class="sr-only" id="status" aria-live="polite"></p>
+    </section>
+
+    <section class="stats" aria-label="Decisiones del motor">
+      <article class="card stat"><span>Tema elegido</span><strong id="theme-value">—</strong></article>
+      <article class="card stat"><span>Partículas</span><strong id="particles-value">—</strong></article>
+      <article class="card stat"><span>Velocidad</span><strong id="speed-value">—</strong></article>
+      <article class="card stat"><span>Grilla</span><strong id="columns-value">—</strong></article>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Tres reglas verificables</div>
+      <div class="rules">
+        <article class="card rule"><small>Regla 01</small><h2>La seed produce el ADN</h2><p>La misma entrada siempre genera los mismos cinco rasgos. Una seed textual también se convierte de forma determinista.</p></article>
+        <article class="card rule"><small>Regla 02</small><h2>El ADN puntúa los temas</h2><p>Neon, glass, ember, forest y space compiten mediante reglas explícitas. Gana la puntuación más alta.</p></article>
+        <article class="card rule"><small>Regla 03</small><h2>Las decisiones se exportan</h2><p>El resultado incluye tokens CSS y datos estructurados. No reemplaza al diseñador: automatiza un sistema definido por él.</p></article>
+      </div>
+    </section>
+
+    <section class="section inspector">
+      <article class="card dna">
+        <div class="section-title">ADN visual</div>
+        <div id="traits"></div>
+      </article>
+      <pre class="card" id="design-output" aria-label="Resultado JSON"></pre>
+    </section>
+  </main>
+
+  <footer>Luminis Engine v0.5 · Margaret + LuMinis · Misma seed, mismo diseño.</footer>
+
+  <script src="./src/luminis-engine.js"></script>
+  <script>
+    'use strict';
+
+    const field = document.querySelector('#particle-field');
+    const traits = document.querySelector('#traits');
+    const seedInput = document.querySelector('#seed-input');
+    const status = document.querySelector('#status');
+    const pool = [];
+
+    for (let index = 0; index < 100; index += 1) {
+      const particle = document.createElement('i');
+      particle.className = 'particle';
+      particle.hidden = true;
+      field.appendChild(particle);
+      pool.push(particle);
+    }
+
+    function randomSeed() {
+      if (globalThis.crypto && typeof globalThis.crypto.getRandomValues === 'function') {
+        return globalThis.crypto.getRandomValues(new Uint32Array(1))[0];
+      }
+      return Date.now() >>> 0;
+    }
+
+    function renderParticles(design) {
+      const random = LuminisEngine.createRng(design.seed ^ 0x9e3779b9);
+      const { particleCount, speedSeconds } = design.decisions;
+      const colors = design.themeTokens.particles;
+      pool.forEach((particle, index) => {
+        if (index >= particleCount) {
+          particle.hidden = true;
+          return;
+        }
+        const size = (2 + random() * 5).toFixed(1);
+        particle.hidden = false;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${(random() * 100).toFixed(1)}%`;
+        particle.style.top = `${(40 + random() * 60).toFixed(1)}%`;
+        particle.style.background = colors[Math.floor(random() * colors.length)];
+        particle.style.animationDuration = `${(speedSeconds * (.5 + random() * 1.2)).toFixed(2)}s`;
+        particle.style.animationDelay = `${(random() * speedSeconds * 1.5).toFixed(2)}s`;
+      });
+    }
+
+    function renderTraits(design) {
+      traits.replaceChildren(...LuminisEngine.traits.map(name => {
+        const row = document.createElement('div');
+        row.className = 'trait';
+        const label = document.createElement('span');
+        label.className = 'trait-name';
+        label.textContent = name;
+        const track = document.createElement('span');
+        track.className = 'track';
+        const fill = document.createElement('span');
+        fill.className = 'fill';
+        fill.style.width = `${design.dna[name] * 100}%`;
+        track.appendChild(fill);
+        const value = document.createElement('span');
+        value.className = 'trait-value';
+        value.textContent = design.dna[name].toFixed(2);
+        row.append(label, track, value);
+        return row;
+      }));
+    }
+
+    function render(seed, updateUrl = true) {
+      const design = LuminisEngine.createDesign(seed);
+      LuminisEngine.applyDesign(design);
+      renderParticles(design);
+      renderTraits(design);
+      document.querySelector('#version-badge').textContent = `v${design.version} · ${design.theme}`;
+      document.querySelector('#theme-value').textContent = design.theme;
+      document.querySelector('#particles-value').textContent = design.decisions.particleCount;
+      document.querySelector('#speed-value').textContent = `${design.decisions.speedSeconds.toFixed(1)}s`;
+      document.querySelector('#columns-value').textContent = design.decisions.columns;
+      document.querySelector('#design-output').textContent = JSON.stringify({
+        seed: design.seed,
+        seedHex: design.seedHex,
+        dna: design.dna,
+        scores: design.scores,
+        theme: design.theme,
+        decisions: design.decisions
+      }, null, 2);
+      seedInput.value = String(seed);
+      status.textContent = `Diseño ${design.theme} generado con seed ${design.seed}.`;
+      if (updateUrl) {
+        const url = new URL(location.href);
+        url.searchParams.set('seed', String(design.seed));
+        history.replaceState({}, '', url);
+      }
+      return design;
+    }
+
+    document.querySelector('#seed-form').addEventListener('submit', event => {
+      event.preventDefault();
+      render(seedInput.value || 0);
+    });
+    document.querySelector('#random-button').addEventListener('click', () => render(randomSeed()));
+    document.querySelector('#share-button').addEventListener('click', async event => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        event.currentTarget.textContent = '¡Enlace copiado!';
+      } catch {
+        event.currentTarget.textContent = 'Copia la URL';
+      }
+      setTimeout(() => { event.currentTarget.textContent = 'Compartir'; }, 1800);
+    });
+
+    const initialSeed = LuminisEngine.seedFromSearch(location.search, randomSeed());
+    render(initialSeed, !location.search.includes('seed='));
+  </script>
 </body>
 </html>
